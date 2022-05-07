@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class modernArt {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int rows = input.nextInt();
+        int columns = input.nextInt();
+        String[][] canvas = new String[rows][columns];
+
+        for (int i = 0; i < canvas.length; i++){
+            for (int j = 0; j < canvas[0].length; j++){
+                canvas[i][j] = "B";
+            }
+        }
+
+
+        int values = input.nextInt();
+        String[] brush = new String[values];
+        input.nextLine();
+
+        for (int i = 0; i < brush.length; i++){
+            String value = input.nextLine();
+            brush[i] = value;
+        }
+
+        for (int i = 0; i < values; i++){
+            if(brush[i].charAt(0) == 'R'){
+                int theRow = Integer.valueOf(brush[i].substring(2));
+                theRow = theRow -1;
+
+                for (int j = 0; j < columns; j++){
+                    if (canvas[theRow][j].equals("B")){
+                        canvas[theRow][j] = "G";
+                    }else{
+                        canvas[theRow][j] = "B";
+                    }
+                }
+            }else{
+                int theColumn = Integer.valueOf(brush[i].substring(2));
+                theColumn = theColumn -1;
+
+                for (int j = 0; j < rows; j++){
+                    if (canvas[j][theColumn].equals("B")){
+                        canvas[j][theColumn] = "G";
+                    }else{
+                        canvas[j][theColumn] = "B";
+                    }
+                }
+            }
+        }
+
+        int counter = 0;
+
+        for (int i = 0; i < canvas.length; i++){
+            for (int j = 0; j < canvas[0].length; j++){
+                if (canvas[i][j].equals("G")){
+                    counter++;
+                }
+            }
+        }
+
+        System.out.println(counter);
+    }
+
+}
