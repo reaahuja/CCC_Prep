@@ -1,0 +1,74 @@
+import java.util.*;
+
+/*
+1. Generate prime numbers
+2. Check if numbers added together equal answer
+ */
+
+public class primeNumbers {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int length = input.nextInt();
+
+        int[] givenNumbers = new int[length];
+        //fill array
+        for (int i = 0; i < length; i++){
+            givenNumbers[i] = input.nextInt();
+        }
+
+        //check each number
+        for (int i = 0; i < givenNumbers.length; i++){
+            int[] primeNumbers = new int[2* givenNumbers[i]];
+            primeNumbers = generatePrimeNumbers(2* givenNumbers[i]);
+
+            boolean found = false;
+
+            for (int j = 0; j < 2*givenNumbers[i]; j++){
+                for (int k = 0; k < 2*givenNumbers[i]; k++){
+                    int answer = (primeNumbers[j] + primeNumbers[k])/2;
+
+                    if (answer == givenNumbers[i] && found == false){
+                        System.out.println(primeNumbers[j] + " " + primeNumbers[k]);
+                        found = true;
+                    }
+                }
+            }
+
+            System.out.println("");
+
+        }
+
+    }
+
+    public static int[] generatePrimeNumbers(int goal){
+        int[] primes = new int[goal];
+        int counter = 0;
+
+        for (int i = 3; i < goal; i++){
+            if (primes(i)){
+                primes[counter] = i;
+            }
+            counter++;
+        }
+
+        return primes;
+    }
+
+    public static boolean primes(int k){
+        int num = k;
+        boolean flag = false;
+        for (int i = 2; i <= num / 2; ++i) {
+            if (num % i == 0) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
