@@ -1,0 +1,51 @@
+package com.company;
+
+import java.util.*;
+
+public class Flipper {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int[][] grid = {{1, 2},
+                        {3, 4}
+                        };
+
+        String change = input.nextLine();
+
+       // System.out.println(grid[0][0]); == 1
+       // System.out.println(grid[1][0]); == 3
+
+        for (int i = 0; i < change.length(); i++){
+            if (change.charAt(i) == 'V'){
+                int temp = grid[0][0];
+                grid[0][0] = grid[0][1];
+                grid[0][1] = temp;
+
+                int tempB = grid[1][0];
+                grid[1][0] = grid[1][1];
+                grid[1][1] = tempB;
+            }else{
+                //change.charAt(i) == 'H'
+                int temp = grid[0][0];
+                grid[0][0] = grid[1][0];
+                grid[1][0] = temp;
+
+                int tempR = grid[0][1];
+                grid[0][1] = grid[1][1];
+                grid[1][1]= tempR;
+            }
+        }
+
+        //print rows
+        for (int i = 0; i < 2; i++){
+            System.out.print(grid[0][i] + " ");
+        }
+        System.out.println("");
+
+        for (int i = 0; i < 2; i++){
+            System.out.print(grid[1][i] + " ");
+        }
+
+
+    }
+}
