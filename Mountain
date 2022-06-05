@@ -1,0 +1,67 @@
+package com.company;
+
+import java.util.*;
+
+public class Other {
+
+    public static void main(String[] args) {
+	Scanner input = new Scanner(System.in);
+
+    Stack numbersStack = new Stack();
+
+    int amountNumbers = input.nextInt();
+    int counter = 0;
+    int numberInput;
+    int[] mountain = new int[amountNumbers];
+
+    while (counter != amountNumbers){
+        numberInput = input.nextInt();
+        mountain[counter] = numberInput;
+        counter++;
+    }
+
+
+    int[] lake = new int[amountNumbers];
+    int[] branch = new int[amountNumbers];
+    int typeNumber = 1;
+
+    while (mountain[amountNumbers -1] != 0){
+        for (int i = 0; i < amountNumbers; i++){
+            if (typeNumber == 1){
+                if (mountain[i] == typeNumber){
+                    lake[i] = mountain[i];
+                }else{
+                    branch[i] = mountain[i];
+                }
+            }else{
+                if (branch[i] == typeNumber){
+                    lake[i] = branch[i];
+                }
+            }
+        }
+        typeNumber++;
+    }
+
+    boolean organized = false;
+
+    for (int j = 0; j < amountNumbers - 1; j++){
+        if (lake[j] < lake[j + 1]){
+             organized = true;
+        }else{
+             organized = false;
+        }
+    }
+
+        System.out.println("hello");
+
+    if (organized == true){
+        System.out.println("Y");
+    }else{
+        System.out.println("N");
+    }
+
+
+
+
+    }
+}
